@@ -39,3 +39,4 @@ echo   [SUCCESS] Setup finished successfully!
 echo   Launch by double-clicking: start_silent.vbs
 echo ==============================================
 pause
+

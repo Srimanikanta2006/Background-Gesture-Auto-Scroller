@@ -1,77 +1,136 @@
-# Background Hand Gesture Auto-Scroller
+# ✌️ Background Hand Gesture Auto-Scroller
 
-A lightweight, 100% free background tool for Windows that scrolls your screen down automatically when you show a **2-finger peace sign** to your webcam.
+A lightweight, completely free, and 100% offline background utility for Windows that watches your webcam for a **2-finger peace sign** and slowly glides the screen downwards for comfortable hands-free reading.
 
-Perfect for hands-free reading of long answers on **ChatGPT**, research articles, tutorials, and ebooks.
-
----
-
-## Why You'll Love This
-
-- **Completely Invisible**: Runs silently in your Windows System Tray (near the clock). No camera preview popups, no command prompt windows.
-- **Ultra-Slow Reading Speed**: Smooth line-by-line gliding so you can comfortably read without text flying past.
-- **High-Precision Hand Recognition**:
-  - Showing **2 fingers (✌ peace sign)** $\rightarrow$ Scrolls down.
-  - Making a **fist / closing palm** $\rightarrow$ Instantly stops scrolling.
-  - Showing **open palm (5 fingers)** or **1 finger** $\rightarrow$ Does not scroll.
-- **100% Private & Offline**: All processing happens locally on your computer with Google MediaPipe. No images are saved or sent over the internet.
-- **Zero Cost**: Built completely with free Python libraries.
+Designed specifically for reading long responses on **ChatGPT**, blog posts, technical documentation, PDFs, and ebooks without ever touching your mouse or touchpad.
 
 ---
 
-## Quick Start (1 Minute Setup)
+## ⚡ Quickstart (Command-Line)
 
-### Step 1: Install
-1. Clone or download this repository.
-2. Double-click **`setup.bat`**.
-   *(This automatically creates a virtual environment and installs the required packages).*
+If you prefer using the terminal (PowerShell or Command Prompt), follow these steps:
 
-### Step 2: Run in Background
-- Double-click **`start_silent.vbs`**.
-- That's it! It is now running silently in the background.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Srimanikanta2006/Background-Gesture-Auto-Scroller.git
+cd Background-Gesture-Auto-Scroller
+```
+
+### 2. Create and Activate Virtual Environment
+```powershell
+# Create isolated environment
+python -m venv .venv
+
+# Activate it (PowerShell)
+.\.venv\Scripts\Activate.ps1
+
+# (Optional) If you are using Command Prompt (cmd) instead:
+# .venv\Scripts\activate.bat
+```
+
+### 3. Install Dependencies
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 4. Launch in the Background
+```powershell
+# Option A: Completely silent background launch (Recommended)
+wscript start_silent.vbs
+
+# Option B: Run via pythonw (no terminal window)
+.\.venv\Scripts\pythonw.exe main.pyw
+```
+> The tool is now running silently! Look for the small icon in your **Windows System Tray** (bottom-right of your taskbar, next to the clock).
 
 ---
 
-## How to Use
+## 🖱️ Quickstart (1-Click GUI Method)
 
-1. Open your browser with ChatGPT or any long article.
-2. Put your hand in front of your webcam and raise **2 fingers (Index + Middle)**.
-3. The page will smoothly scroll down while you read!
-4. Lower your hand or close your fingers into a fist to stop immediately.
+If you don't want to touch the terminal:
+
+1. Download or clone this folder.
+2. Double-click **`setup.bat`** (creates the `.venv` and installs all packages automatically).
+3. Double-click **`start_silent.vbs`** to launch silently in the background.
 
 ---
 
-## Hand Gestures Cheat Sheet
+## 🖐️ Hand Gestures Cheat Sheet
 
-| Gesture | What You Do | Result |
+| Gesture | How to Hold Your Hand | What Happens |
 |---|---|---|
-| **✌ Peace Sign** | Index & Middle fingers raised upward | **Smooth Auto-Scroll** |
-| **✊ Fist / Closed Palm** | Fingers folded into palm | **Stop (Idle)** |
-| **🖐 Open Hand** | All 5 fingers extended | **Stop (Idle)** |
-| **☝ Pointing** | Only 1 finger raised | **Stop (Idle)** |
+| **✌ Peace Sign** | **Index + Middle fingers extended up**, Ring & Pinky curled into palm | **Smooth Auto-Scroll Downwards** |
+| **✊ Closed Fist / Palm** | All fingers curled inward | **Instant Stop (Idle)** |
+| **🖐 Open Palm** | 4 or 5 fingers extended | **Instant Stop (Idle)** |
+| **☝ Pointing** | Only Index finger extended | **Instant Stop (Idle)** |
+
+> **Palm Safety Feature**: Closed palms or loose fists will **never** trigger scrolling. The engine calculates bone elongation ratios and requires exact 2-finger alignment before sending any scroll pulse.
 
 ---
 
-## System Tray Controls
+## 🎛️ System Tray Menu & Controls
 
-Look at the bottom-right of your Windows taskbar (near the clock). You will find a small circular tray icon. Right-click it anytime to:
+Right-click the circular icon in your Windows Taskbar Tray (near the clock) to access the menu:
 
-- **Pause / Resume**: Temporarily turn off gesture tracking without closing the app.
-- **Scroll Speed**: Choose between *Ultra Slow (Reading)*, *Slow*, *Normal*, or *Fast*.
-- **Show Camera Test (Preview)**: Opens a small camera window so you can check your lighting and see your hand skeleton live. Press `q` to close it.
-- **Exit Gesture Scroller**: Cleanly stops the tool and frees your camera.
-
----
-
-## Stopping the Tool
-
-You can stop the scroller in two ways:
-1. Right-click the system tray icon and click **Exit Gesture Scroller**, or
-2. Double-click **`stop.bat`** to safely terminate the background process.
+* **Pause / Resume Detection**: Temporarily freeze gesture tracking without quitting.
+* **Scroll Speed**:
+  * `Ultra Slow (Reading Speed - Recommended)`: Gentle line-by-line reading speed (~3 ticks / pulse).
+  * `Slow (Comfortable Reading)`: Smooth teleprompter speed (~6 ticks / pulse).
+  * `Normal (Glide)`: Faster skimming speed (~15 ticks / pulse).
+  * `Fast`: Quick navigation (~35 ticks / pulse).
+* **Show Camera Test (Preview)**: Opens a live preview window with your hand landmarks drawn. Press `q` to close.
+* **Exit Gesture Scroller**: Cleanly frees your webcam and terminates the background process.
 
 ---
 
-## Testing Your Camera (Optional)
+## 🧪 Testing & Diagnostics
 
-Want to see how accurately your hand is being tracked?
-Double-click **`test_camera.py`** to launch a visual tester window with live feedback banners. Press `q` when done.
+### 1. Visual Camera & Gesture Test
+Test your webcam lighting and verify gesture detection with live diagnostic banners:
+```powershell
+.\.venv\Scripts\python.exe test_camera.py
+```
+* Shows `2 Fingers (Peace) -> SCROLLING` when active.
+* Shows `Closed Palm / Fist -> IDLE` when palm is closed.
+* Press **`q`** to close the preview window.
+
+### 2. Run Automated Unit Tests
+Run the deterministic geometric test suite (requires no camera, runs in < 0.3s):
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover tests
+```
+
+---
+
+## 🛑 Stopping the Background App
+
+To stop the background process at any time:
+
+### Using the Batch Script:
+Double-click **`stop.bat`**.
+
+### Or via PowerShell:
+```powershell
+Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*main.pyw*' } | Stop-Process -Force
+```
+
+---
+
+## 🔒 Security & Privacy
+
+* **100% Offline**: All computer vision runs locally on your CPU using Google MediaPipe.
+* **Zero Telemetry**: No camera frames, images, or metrics are ever saved to disk or transmitted over the internet.
+* **Single-Instance Mutex**: Uses native Windows `CreateMutexW` to prevent duplicate background instances from competing for your webcam.
+* **PyAutoGUI Fail-Safe**: Moving your mouse cursor forcefully to any corner of your monitor instantly stops mouse events.
+
+---
+
+## 🛠️ Troubleshooting
+
+| Problem | Cause | Solution Command / Action |
+|---|---|---|
+| Camera not opening | Another app (Zoom, Teams, Chrome) is using it | Close other camera apps and restart with `start_silent.vbs` |
+| `setup.bat` fails | Python not installed or not in system PATH | Install Python 3.10 or 3.11 from [python.org](https://www.python.org/) and check **"Add Python to PATH"** |
+| Execution Policy Error in PowerShell | PowerShell script execution restricted | Run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` before activating `.venv` |
+| Process won't stop | Process running under another PID | Run `stop.bat` or kill via PowerShell command shown above |
