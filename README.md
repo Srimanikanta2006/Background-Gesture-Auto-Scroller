@@ -4,6 +4,14 @@ A lightweight, completely free, and 100% offline background utility for Windows 
 
 Designed specifically for reading long responses on **ChatGPT**, blog posts, technical documentation, PDFs, and ebooks without ever touching your mouse or touchpad.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Background Gesture Auto-Scroller Demo Walkthrough" width="100%" style="border-radius: 8px;" />
+</p>
+<p align="center">
+  <em>⚡ <b>Live Commercial Demo:</b> ✌ Raise 2 fingers to smoothly auto-scroll line-by-line &bull; ✊ Close your palm into a fist to stop instantly.</em><br>
+  <em>(Also available as <a href="assets/demo.mp4">High-Resolution MP4 Video</a>)</em>
+</p>
+
 ---
 
 ## ⚡ Quickstart (Command-Line)
